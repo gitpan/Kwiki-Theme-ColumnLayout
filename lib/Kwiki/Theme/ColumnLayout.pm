@@ -1,7 +1,7 @@
 package Kwiki::Theme::ColumnLayout;
 use Kwiki::Theme -Base;
 use mixin 'Kwiki::Installer';
-our $VERSION='0.04';
+our $VERSION='0.05';
 const theme_id => 'columnlayout';
 const class_title => 'Column Layout Theme';
 
@@ -17,7 +17,10 @@ Kwiki::Theme::ColumnLayout - Kwiki Theme with two / three column layout.
 
 =head1 DESCRIPTION
 
-This module provide a simple column layout for your kwiki site.
+This module provide a simple column layout for your kwiki site.  It is
+also suggested to install L<Kwiki::Infobox> and
+L<Kwiki::NavigationToolbar>, this theme make use of this two plugin to
+make kwiki kwiki site more controllable via web interface.
 
 =head1 AUTHOR
 
@@ -236,23 +239,38 @@ h2 {margin-bottom:4px;}
 
 td {vertical-align: top;}
 
+div#navigation
+{
+    margin-top: -16px;
+    margin-left: 180px;
+}
+
 div.toolbar
-{ 
-  margin-left: 170px;
-  margin-top: -16px;
-  }
+{
+  padding-top: 6px;
+}
+
+table#column_wrapper
+{
+  margin-top: 6px;
+}
 __theme/columnlayout/template/tt2/kwiki_screen.html__
 [%- INCLUDE kwiki_doctype.html %]
 [% INCLUDE kwiki_begin.html %]
 <div class="container">
     <div class="header">
         <div id="logo"><img src="[% logo_image %]" /></div>
-	<div class="navigation">
-        [% hub.toolbar.html %]
+	<div id="navigation">
+    [% IF hub.have_plugin('navigation_toolbar');
+          hub.navigation_toolbar.html;
+       END;
+       IF hub.have_plugin('toolbar');
+          hub.toolbar.html;
+       END; %]
 	</div>
     </div>
 
-<table><tr>
+<table id="column_wrapper"><tr>
 [% IF hub.config_blocks.pageconf.no_left_column %]
 <style type="text/css">
 #centercontent {

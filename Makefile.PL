@@ -9,6 +9,7 @@ version_from    ('lib/Kwiki/Theme/ColumnLayout.pm');
 requires        ('Kwiki');
 requires        ('Kwiki::ConfigBlocks');
 requires        ('Kwiki::Infobox');
+requires        ('Kwiki::NavigationToolbar');
 
 &WriteAll;
 
