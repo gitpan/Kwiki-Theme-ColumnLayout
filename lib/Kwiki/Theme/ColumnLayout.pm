@@ -1,7 +1,7 @@
 package Kwiki::Theme::ColumnLayout;
 use Kwiki::Theme -Base;
 use mixin 'Kwiki::Installer';
-our $VERSION='0.05';
+our $VERSION='0.06';
 const theme_id => 'columnlayout';
 const class_title => 'Column Layout Theme';
 
@@ -239,13 +239,13 @@ h2 {margin-bottom:4px;}
 
 td {vertical-align: top;}
 
-div#navigation
+div.navigation
 {
-    margin-top: -16px;
+    margin-top: -48px;
     margin-left: 180px;
 }
 
-div.toolbar
+div.navigation_toolbar
 {
   padding-top: 6px;
 }
@@ -260,13 +260,18 @@ __theme/columnlayout/template/tt2/kwiki_screen.html__
 <div class="container">
     <div class="header">
         <div id="logo"><img src="[% logo_image %]" /></div>
-	<div id="navigation">
-    [% IF hub.have_plugin('navigation_toolbar');
-          hub.navigation_toolbar.html;
-       END;
+	<div class="navigation">
+           <div id="title_pane">
+             <h1>[% screen_title || self.class_title %]</h1>
+           </div>
+    [%
        IF hub.have_plugin('toolbar');
           hub.toolbar.html;
-       END; %]
+       END;
+       IF hub.have_plugin('navigation_toolbar');
+          hub.navigation_toolbar.html;
+       END;
+     %]
 	</div>
     </div>
 
