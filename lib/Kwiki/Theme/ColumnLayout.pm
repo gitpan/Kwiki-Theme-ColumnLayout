@@ -1,7 +1,7 @@
 package Kwiki::Theme::ColumnLayout;
 use Kwiki::Theme -Base;
 use mixin 'Kwiki::Installer';
-our $VERSION='0.03';
+our $VERSION='0.04';
 const theme_id => 'columnlayout';
 const class_title => 'Column Layout Theme';
 
@@ -247,9 +247,6 @@ __theme/columnlayout/template/tt2/kwiki_screen.html__
 <div class="container">
     <div class="header">
         <div id="logo"><img src="[% logo_image %]" /></div>
-        <div class="navigation">
-        [% hub.navigator.html %]
-        </div>
 	<div class="navigation">
         [% hub.toolbar.html %]
 	</div>
