@@ -11,4 +11,5 @@ Makefile.PL
 MANIFEST
 META.yml
 README
+Changes
 t/00.use.t

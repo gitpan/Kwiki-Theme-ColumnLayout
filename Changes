@@ -1,0 +1,9 @@
+0.03 - Unbreak with Kwiki 0.37
+
+	* People who upgrade from 0.02 will have to remove
+
+	      theme/columnlayout/template/tt2/kwiki_begin.html
+
+	  manually.
+
+

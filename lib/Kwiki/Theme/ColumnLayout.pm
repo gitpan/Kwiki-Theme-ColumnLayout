@@ -1,7 +1,7 @@
 package Kwiki::Theme::ColumnLayout;
 use Kwiki::Theme -Base;
 use mixin 'Kwiki::Installer';
-our $VERSION='0.02';
+our $VERSION='0.03';
 const theme_id => 'columnlayout';
 const class_title => 'Column Layout Theme';
 
@@ -247,7 +247,6 @@ __theme/columnlayout/template/tt2/kwiki_screen.html__
 <div class="container">
     <div class="header">
         <div id="logo"><img src="[% logo_image %]" /></div>
-       
         <div class="navigation">
         [% hub.navigator.html %]
         </div>
@@ -299,36 +298,3 @@ __theme/columnlayout/template/tt2/kwiki_screen.html__
 </div>
 
 [% INCLUDE kwiki_end.html %]
-__theme/columnlayout/template/tt2/kwiki_begin.html__
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <title>
-[% IF hub.action == 'display' || 
-      hub.action == 'edit' || 
-      hub.action == 'revisions' 
-%]
-  [% hub.cgi.page_name %] -
-[% END %]
-[% IF hub.action != 'display' %]
-  [% self.class_title %] - 
-[% END %]
-  [% site_title %]</title>
-[% FOR link = hub.links.all -%]
-  <link rel="[% link.rel %]" type="[% link.type %]" href="[% link.href %]" />
-[% END %]
-  <style type="text/css">
-[% FOR css_file = hub.css.files -%]
-  @import url([% css_file %]);
-[% END -%]
-  </style>
-[% FOR javascript_file = hub.javascript.files -%]
-  <script type="text/javascript" src="[% javascript_file %]"></script>
-[% END -%]
-  <link rel="shortcut icon" href="" />
-  <link rel="start" href="[% script_name %]" title="Home" />
-</head>
-<body>
-<!-- END kwiki_begin -->
-
-
