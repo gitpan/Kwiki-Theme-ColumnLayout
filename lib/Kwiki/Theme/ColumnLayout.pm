@@ -1,7 +1,7 @@
 package Kwiki::Theme::ColumnLayout;
 use Kwiki::Theme -Base;
 use mixin 'Kwiki::Installer';
-our $VERSION='0.06';
+our $VERSION='0.07';
 const theme_id => 'columnlayout';
 const class_title => 'Column Layout Theme';
 
@@ -57,8 +57,10 @@ body {
 
 .container {
              margin-top: 32px;
-             margin-right:50px;
-             margin-left:50px;
+	     width: 90%;
+	     min-width: 600px;
+             margin-right:auto;
+             margin-left:auto;
              background:white;
              border-top: 1px solid black;
              border-left:1px solid black;
@@ -69,10 +71,14 @@ body {
 #leftcontent {
                float:left;
                width:170px;
-               position:relative;
                margin-top:20px;
-               font-size:14px;
                }
+
+#rightcontent {
+               float:right;
+               width:170px;
+               margin-top:20px;
+}
 
 #centercontent {
                  padding:10px;
@@ -214,8 +220,6 @@ h1, h2, h3, h4, h5, h6
   }
 
 
-#leftcontent {height: 400px;}
-
 #centercontent {
                  margin-left: 180px; 
                  margin-right:180px;
@@ -250,10 +254,7 @@ div.navigation_toolbar
   padding-top: 6px;
 }
 
-table#column_wrapper
-{
-  margin-top: 6px;
-}
+
 __theme/columnlayout/template/tt2/kwiki_screen.html__
 [%- INCLUDE kwiki_doctype.html %]
 [% INCLUDE kwiki_begin.html %]
@@ -275,7 +276,6 @@ __theme/columnlayout/template/tt2/kwiki_screen.html__
 	</div>
     </div>
 
-<table id="column_wrapper"><tr>
 [% IF hub.config_blocks.pageconf.no_left_column %]
 <style type="text/css">
 #centercontent {
@@ -285,20 +285,16 @@ __theme/columnlayout/template/tt2/kwiki_screen.html__
 }
 </style>
 [% ELSE %]
-<td id="leftcontent">
+<div id="leftcontent">
 [% hub.widgets.html %]
 [% hub.infobox.html %]
-</td>
+</div>
 [% END %]
 
-<td id="centercontent">
-[% INCLUDE $content_pane %]
-</td>
-
 [% IF hub.config_blocks.pageconf.show_right_column %]
-<td id="pullout">
+<div id="rightcontent">
 [% hub.infobox.right %]
-</td>
+</div>
 [% ELSE %]
 <style type="text/css">
 #centercontent {
@@ -309,7 +305,9 @@ __theme/columnlayout/template/tt2/kwiki_screen.html__
 </style>
 [% END %]
 
-</tr></table>
+<div id="centercontent">
+[% INCLUDE $content_pane %]
+</div>
 
 <br clear="all" />
 <div class="footer">
