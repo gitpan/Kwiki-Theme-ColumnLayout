@@ -1,7 +1,7 @@
 package Kwiki::Theme::ColumnLayout;
 use Kwiki::Theme -Base;
 use mixin 'Kwiki::Installer';
-our $VERSION='0.07';
+our $VERSION='0.08';
 const theme_id => 'columnlayout';
 const class_title => 'Column Layout Theme';
 
@@ -276,7 +276,7 @@ __theme/columnlayout/template/tt2/kwiki_screen.html__
 	</div>
     </div>
 
-[% IF hub.config_blocks.pageconf.no_left_column %]
+[% IF hub.have_plugin('config_blocks') && hub.config_blocks.pageconf.no_left_column %]
 <style type="text/css">
 #centercontent {
    width: auto;
@@ -287,13 +287,13 @@ __theme/columnlayout/template/tt2/kwiki_screen.html__
 [% ELSE %]
 <div id="leftcontent">
 [% hub.widgets.html %]
-[% hub.infobox.html %]
+[% IF hub.have_plugin('infobox'); hub.infobox.html; END; %]
 </div>
 [% END %]
 
-[% IF hub.config_blocks.pageconf.show_right_column %]
+[% IF hub.have_plugin('config_blocks') && hub.config_blocks.pageconf.show_right_column %]
 <div id="rightcontent">
-[% hub.infobox.right %]
+[% IF hub.have_plugin('infobox'); hub.infobox.right; END; %]
 </div>
 [% ELSE %]
 <style type="text/css">
